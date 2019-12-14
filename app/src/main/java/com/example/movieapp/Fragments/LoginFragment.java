@@ -59,18 +59,23 @@ public class LoginFragment extends Fragment {
 
                     final List<User> users = db.getAllUsers();
                     Log.d("users", users.toString());
+                    int id = -1;
                     int ok = 0;
                     for (User u : users)
                     {
                         if (u.getName().equals(username) && u.getPassword().equals(password))
                         {
                             ok = 1;
+                            id=u.getId();
                         }
                     }
 
                     if (ok ==1) {
-
+                        final Bundle bundle = new Bundle();
+                        bundle.putInt("id", id);
                         HomeFragment hFragment = new HomeFragment();
+                        hFragment.setArguments(bundle);
+
                         Fragmentchange(hFragment);
                     }
                     else {

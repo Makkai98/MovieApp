@@ -83,7 +83,7 @@ public class RegisterFragment  extends Fragment {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent GalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent GalleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(GalleryIntent,RESULT_LOAD_IMAGE);
             }
         });
@@ -109,7 +109,7 @@ public class RegisterFragment  extends Fragment {
         {
             Uri selectedImage = data.getData();
             image.setImageURI(selectedImage);
-            path = getPath(selectedImage);
+            path = selectedImage.toString();
 
         }
 
@@ -126,7 +126,7 @@ public class RegisterFragment  extends Fragment {
         }
         return id;
     }
-
+/*
     public String getPath(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
         Cursor cursor = getActivity().getApplicationContext().getContentResolver().query(uri, projection, null,null,null);
@@ -134,5 +134,7 @@ public class RegisterFragment  extends Fragment {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
+
+ */
 }
 

@@ -120,6 +120,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(user.getId()) });
     }
 
+    public int updateUserPassword (User user) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+
+        values.put(USER_PW, user.getPassword());
+
+
+        // updating row
+        return db.update(TABLE_USER, values, USER_ID + " = ?",
+                new String[] { String.valueOf(user.getId()) });
+    }
+
+    public int updateUserPicture (User user) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+
+        values.put(USER_PROFILEIMAGE, user.getProfileimage());
+
+
+        // updating row
+        return db.update(TABLE_USER, values, USER_ID + " = ?",
+                new String[] { String.valueOf(user.getId()) });
+    }
+
+    public void deleteAllUser()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from " + TABLE_USER );
+    }
+
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen())
